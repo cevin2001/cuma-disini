@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cumadisini.my.id/sitemap.xml
