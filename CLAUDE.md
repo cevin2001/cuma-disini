@@ -7,7 +7,7 @@ Single static landing page (Bahasa Indonesia) selling licensed Scopus accounts u
 - `index.html` — the whole page. Section order: topbar, hero (+ ticker), §01 Masalah (versus), §02 Definisi + Akses (doors), §03 Bukti (testimonials), §04 Harga (ledger + lifetime group promo + bonus footnote), §05 Untuk siapa, §06 Manfaat, §07 Tanya (FAQ accordion), penutup, footer, mobile dock.
 - `public/css/style.css` — all styling in `====` banner blocks mirroring the sections. Design tokens live in `:root`: `--paper`, `--paper-2`, `--card`, `--ink`, `--ink-2`, `--line`, `--red` (fills), `--red-ink` (text-safe red), `--hl` (highlighter yellow); fonts `--serif` (Fraunces, display), `--sans` (Geist, body), `--mono` (IBM Plex Mono, labels).
 - `public/js/head.js` adds `js` to `<html>`; `public/js/main.js` runs reveals, count-up, the hero sheet animation, topbar hairline and the mobile dock.
-- Logo: `[•]` bracket mark ("di sini"). `public/favicon.svg`, the inline `.logo__mark` SVG, and the `.end__mark` SVG in `index.html` are the same artwork — edit together. `public/og-image.png` (1200×630) and `public/apple-touch-icon.png` (180×180) were rendered from HTML with headless Chrome; regenerate rather than hand-edit.
+- Logo: open book with a red location pin rising from the spine (ilmu, "di sini"). `public/favicon.svg`, the inline `.logo__mark` SVG, and the `.end__mark` SVG in `index.html` are the same artwork — edit together. `public/og-image.png` (1200×630) and `public/apple-touch-icon.png` (180×180) were rendered from HTML with headless Chrome; regenerate rather than hand-edit.
 
 ## Conventions
 
