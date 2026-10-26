@@ -663,6 +663,18 @@ p {
 .bukti__quote .mark {
   font-style: normal;
 }
+.bukti__more {
+  display: inline-block;
+  margin-top: 28px;
+  color: var(--hl);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 5px;
+}
+.bukti__more:hover {
+  color: var(--paper);
+}
 .phones {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -933,6 +945,25 @@ html:has(.viewer[open]) {
 }
 .row--life .row__name b {
   color: var(--hl);
+}
+
+/* shopee checkout strip */
+.shop {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 8px 28px;
+  align-items: center;
+  padding: 22px 0;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+.shop__k {
+  font: 400 italic 22px/1.2 var(--serif);
+}
+.shop__t {
+  color: var(--ink-2);
+  max-width: 60ch;
 }
 
 /* promo */
@@ -1342,8 +1373,13 @@ html:has(.viewer[open]) {
   .hero__grid,
   .bukti,
   .faq,
-  .promo {
+  .promo,
+  .shop {
     grid-template-columns: 1fr;
+  }
+  .shop .btn {
+    justify-self: start;
+    margin-top: 8px;
   }
   .sheet {
     max-width: 460px;
