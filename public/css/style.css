@@ -666,7 +666,7 @@ p {
 .phones {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 28px 16px;
   align-items: start;
   max-width: 620px;
   justify-self: end;
@@ -681,18 +681,147 @@ p {
   background: #000;
   transition: transform 0.4s var(--ease);
 }
-.phone:nth-child(1) {
+.phone:nth-child(3n + 1) {
   transform: rotate(-3deg) translateY(24px);
 }
-.phone:nth-child(2) {
+.phone:nth-child(3n + 2) {
   transform: rotate(1deg);
 }
-.phone:nth-child(3) {
+.phone:nth-child(3n) {
   transform: rotate(4deg) translateY(36px);
 }
-.phone:hover {
+.phone:hover,
+.phone:focus-within {
   transform: rotate(0) translateY(-6px) scale(1.03);
   z-index: 2;
+}
+.phone:focus-within {
+  outline: 3px solid var(--red);
+  outline-offset: 3px;
+}
+.phone__open {
+  display: block;
+  cursor: zoom-in;
+}
+.phone__open:focus-visible {
+  outline: 0;
+}
+.phone img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* viewer — native <dialog>, opened from .phone__open by main.js */
+.viewer {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--paper);
+}
+html:has(.viewer[open]) {
+  overflow: hidden;
+}
+.viewer::backdrop {
+  background: rgba(22, 19, 14, 0.92);
+}
+.viewer[open] {
+  display: grid;
+  place-items: center;
+}
+.viewer__fig {
+  margin: 0;
+  padding: 56px 72px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+.viewer__img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100dvh - 150px);
+  border-radius: 14px;
+  background: #000;
+  animation: viewer-in 0.35s var(--ease);
+}
+.viewer__cap {
+  max-width: 56ch;
+  text-align: center;
+  font: 400 13px/1.5 var(--sans);
+  color: rgba(244, 239, 230, 0.75);
+}
+.viewer__n {
+  display: block;
+  font: 500 11px/1.4 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--hl);
+}
+.viewer__btn {
+  position: fixed;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(244, 239, 230, 0.3);
+  border-radius: 50%;
+  background: rgba(22, 19, 14, 0.6);
+  color: var(--paper);
+  font: 400 22px/1 var(--sans);
+  cursor: pointer;
+  transition: background 0.2s var(--ease);
+}
+.viewer__btn:hover {
+  background: var(--red);
+  border-color: var(--red);
+}
+.viewer__close {
+  top: 12px;
+  right: 12px;
+}
+.viewer__prev,
+.viewer__next {
+  top: 50%;
+  margin-top: -24px;
+}
+.viewer__prev {
+  left: 12px;
+}
+.viewer__next {
+  right: 12px;
+}
+@keyframes viewer-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+@media (max-width: 640px) {
+  .viewer__fig {
+    padding: 64px 12px 84px;
+  }
+  .viewer__img {
+    max-height: calc(100dvh - 210px);
+  }
+  .viewer__prev,
+  .viewer__next {
+    top: auto;
+    bottom: 16px;
+    margin-top: 0;
+  }
+  .viewer__prev {
+    left: calc(50% - 60px);
+  }
+  .viewer__next {
+    right: calc(50% - 60px);
+  }
 }
 
 /* ============================================================

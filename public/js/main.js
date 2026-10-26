@@ -55,6 +55,58 @@
     targets.forEach(function(el){ io.observe(el); });
   }
 
+  /* --- testimonial viewer: click a phone to read it full size --- */
+  var viewer = document.getElementById('viewer');
+  var shots  = document.querySelectorAll('.phone__open');
+  if (viewer && viewer.showModal && shots.length) {
+    var vImg = viewer.querySelector('.viewer__img');
+    var vN   = viewer.querySelector('.viewer__n');
+    var vAlt = viewer.querySelector('.viewer__alt');
+    var cur  = 0;
+
+    function show(i){
+      cur = (i + shots.length) % shots.length;
+      var img = shots[cur].querySelector('img');
+      vImg.src = shots[cur].getAttribute('href');
+      vImg.alt = img.alt;
+      vN.textContent = 'Ulasan ' + (cur + 1) + ' / ' + shots.length;
+      vAlt.textContent = img.alt;
+      /* replay the entrance on every swap */
+      vImg.style.animation = 'none'; void vImg.offsetWidth; vImg.style.animation = '';
+    }
+
+    shots.forEach(function(a, i){
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        show(i);
+        viewer.showModal();
+      });
+    });
+
+    viewer.querySelector('.viewer__close').addEventListener('click', function(){ viewer.close(); });
+    viewer.querySelector('.viewer__prev').addEventListener('click', function(){ show(cur - 1); });
+    viewer.querySelector('.viewer__next').addEventListener('click', function(){ show(cur + 1); });
+
+    /* click on the dark backdrop (outside the image and buttons) closes */
+    viewer.addEventListener('click', function(e){
+      if (e.target === viewer || e.target.classList.contains('viewer__fig')) viewer.close();
+    });
+    viewer.addEventListener('keydown', function(e){
+      if (e.key === 'ArrowLeft')  show(cur - 1);
+      if (e.key === 'ArrowRight') show(cur + 1);
+    });
+    /* swipe left/right on touch screens */
+    var x0 = null;
+    viewer.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, { passive: true });
+    viewer.addEventListener('touchend', function(e){
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 50) show(dx < 0 ? cur + 1 : cur - 1);
+      x0 = null;
+    });
+    viewer.addEventListener('close', function(){ shots[cur].focus(); });
+  }
+
   /* --- topbar hairline + mobile dock --- */
   var top   = document.querySelector('.top');
   var dock  = document.getElementById('dock');
