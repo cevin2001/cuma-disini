@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cumadisini.my.id/sitemap.xml
+Sitemap: https://cuma-disini.com/sitemap.xml

@@ -86,13 +86,19 @@ Tambahkan `dist/` ke `.gitignore` agar tidak ikut di-commit.
 
 ## Custom domain
 
-1. Di project Pages → **Custom domains** → **Set up a custom domain** → masukkan domain (mis. `cumadisini.my.id`).
-2. Jika DNS domain sudah di Cloudflare, record dibuat otomatis. Jika belum, tambahkan CNAME ke `cuma-disini.pages.dev` di penyedia DNS.
-3. Redirect `www` → apex tidak bisa lewat `_redirects`. Buat lewat **Rules → Redirect Rules** di dashboard domain:
-   - When: hostname equals `www.cumadisini.my.id`
-   - Then: Dynamic redirect ke `concat("https://cumadisini.my.id", http.request.uri.path)`, status `301`, preserve query string.
+Domain: `cuma-disini.com` (apex jadi situs utama, `www` redirect ke apex).
 
-Kalau domain final berbeda dari `https://cumadisini.my.id/`, ganti sekaligus di `<head>` dan JSON-LD `index.html`, `robots.txt`, dan `sitemap.xml`.
+Apex domain hanya bisa dipakai di Pages kalau nameserver domain dikelola Cloudflare. CNAME di registrar hanya cukup untuk subdomain seperti `www`.
+
+1. **Tambah domain ke Cloudflare**: dashboard → **Add a domain** → `cuma-disini.com` → plan **Free**.
+2. **Ganti nameserver di registrar**: salin 2 nameserver yang diberikan Cloudflare (mis. `xxx.ns.cloudflare.com`), lalu di panel registrar → **Nameserver** → ganti ke keduanya. Matikan DNSSEC di registrar dulu jika aktif. Tunggu status zone **Active** (menit sampai 24 jam, Cloudflare kirim email).
+3. **Hubungkan ke Pages**: project `cuma-disini` → **Custom domains** → **Set up a custom domain** → `cuma-disini.com` → Activate. Ulangi untuk `www.cuma-disini.com`. Record CNAME dibuat otomatis.
+4. **Redirect `www` → apex** (tidak bisa lewat `_redirects`). Zone `cuma-disini.com` → **Rules → Redirect Rules** → Create:
+   - When: hostname equals `www.cuma-disini.com`
+   - Then: Dynamic redirect ke `concat("https://cuma-disini.com", http.request.uri.path)`, status `301`, preserve query string.
+5. **SSL/TLS**: mode **Full**, aktifkan **Always Use HTTPS**.
+
+Kalau domain berubah lagi, ganti `https://cuma-disini.com/` sekaligus di `<head>` dan JSON-LD `index.html`, `robots.txt`, dan `sitemap.xml`.
 
 ---
 

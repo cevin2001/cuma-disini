@@ -19,4 +19,4 @@ Single static landing page (Bahasa Indonesia) selling licensed Scopus accounts u
 
 - Checkout is WhatsApp: every CTA is `https://wa.me/628134135560?text=...` naming the package and price. When a price changes, update the `text=` payload, the visible ledger row, and the JSON-LD `Offer` together. Encode `+` as `%2B`.
 - JSON-LD `FAQPage` mirrors the `.qa` accordion; keep them in sync.
-- Domain placeholder `https://cumadisini.my.id/` is hardcoded in `<head>`, JSON-LD, `robots.txt`, `sitemap.xml` — replace all together once the real domain is known.
+- Domain `https://cuma-disini.com/` is hardcoded in `<head>`, JSON-LD, `robots.txt`, `sitemap.xml` — replace all together if it changes.
