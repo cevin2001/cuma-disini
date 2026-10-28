@@ -2,3 +2,4 @@
 # (www -> apex is a domain-level redirect, which Pages _redirects cannot do —
 #  it is set up as a Redirect Rule in the Cloudflare dashboard instead.)
 /CLAUDE.md  /  301
+/DEPLOY.md  /  301
