@@ -14,6 +14,7 @@ Single static landing page (Bahasa Indonesia) selling licensed Scopus accounts u
 - Signature element is the highlighter: wrap a phrase in `<span class="mark">` and the IntersectionObserver draws it in. Use sparingly (one per section at most).
 - Reveal classes: `.lift` (hero cascade, with `--d` delay), `.rise` (whole block), `.stagger` (children). `data-count` / `data-suffix` for animated numbers. Respect `prefers-reduced-motion` in both CSS and `main.js`.
 - BEM-ish naming (`.row--pick`, `.door__n`).
+- CSS/JS are cached for a day (`_headers`), so links carry `?v=N`. Bump N on all three (`head.js`, `style.css`, `main.js`) whenever any of them changes.
 
 ## Content / SEO
 
