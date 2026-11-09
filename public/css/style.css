@@ -1039,6 +1039,60 @@ html:has(.viewer[open]) {
   font-weight: 700;
 }
 
+/* Bonus ebook download */
+.ebook {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 4px 20px;
+  margin-top: 16px;
+  max-width: 560px;
+  padding: 18px 20px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--red);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.ebook:hover,
+.ebook:focus-visible {
+  border-color: var(--ink);
+  border-left-color: var(--red);
+  transform: translateY(-2px);
+}
+.ebook__k {
+  grid-column: 1;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.ebook__t {
+  grid-column: 1;
+  font-family: var(--serif);
+  font-size: 20px;
+  line-height: 1.25;
+}
+.ebook__go {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--red-ink);
+  white-space: nowrap;
+}
+@media (max-width: 480px) {
+  .ebook { grid-template-columns: 1fr; }
+  .ebook__go { grid-column: 1; grid-row: auto; margin-top: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ebook { transition: none; }
+  .ebook:hover, .ebook:focus-visible { transform: none; }
+}
+
 /* ============================================================
    5. UNTUK SIAPA
    ============================================================ */
